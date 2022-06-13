@@ -20,12 +20,58 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
         self.declare(Symptom(name ='headache', isExist = input('Do you have a headache? (yes/no)\n')))
 
     @Rule(Symptom(name='headache', isExist = 'yes')) 
-    def askForGaitDisturance(self):
-        self.declare(Symptom(name ='Gait disturance', isExist = input('Do you have a Gait disturance? (yes/no)\n')))
+    def askForPulsingHeadache(self):
+        self.declare(Symptom(name ='Pulsing Headache', isExist = input('Do you have a Pulsing Headache (yes/no)\n')))
         
     @Rule(Symptom(name='headache', isExist = 'no')) 
-    def printHeadache(self):
-        self.declare(Disease(name ='Gait disturance'))
+    def askForSyncope(self):    
+        self.declare(Symptom(name ='Syncope', isExist = input('Do you have a Syncope(yes/no)\n')))
+
+    @Rule(Symptom(name='Syncope', isExist = 'yes')) 
+    def askForHypotension(self):
+        self.declare(Symptom(name ='Hypotension', isExist = input('Do you have a Hypotension (yes/no)\n')))
+        
+    @Rule(Symptom(name='Syncope', isExist = 'no')) 
+    def askForVertigo(self):    
+        self.declare(Symptom(name ='Vertigo', isExist = input('Do you have a Vertigo (yes/no)\n')))
+
+    @Rule(Symptom(name='Hypotension', isExist = 'yes')) 
+    def printOrthostaticHypotension(self):
+        self.declare(Disease(name ='Orthostatic Hypotension'))
+        
+    @Rule(Symptom(name='Hypotension', isExist = 'no')) 
+    def askForWhilePeeing(self):    
+        self.declare(Symptom(name ='While Peeing', isExist = input('Do you have a While Peeing (yes/no)\n')))
+
+    @Rule(Symptom(name='While Peeing', isExist = 'yes')) 
+    def printPeeSyncope(self):
+        self.declare(Disease(name ='Pee Syncope'))
+        
+    @Rule(Symptom(name='Hypotension', isExist = 'no')) 
+    def askForWhileMakingANecktie(self):    
+        self.declare(Symptom(name ='While making a Necktie', isExist = input('Do you have a While making a Necktie (yes/no)\n')))
+
+    @Rule(Symptom(name='While making a Necktie', isExist = 'yes')) 
+    def printVagalSyncope(self):
+        self.declare(Disease(name ='Vagal Syncope'))
+        
+    @Rule(Symptom(name='While making a Necktie', isExist = 'no')) 
+    def askForPeripheralVasodilation(self):    
+        self.declare(Symptom(name ='Peripheral vasodilation', isExist = input('Do you have a Peripheral vasodilatione (yes/no)\n')))
+
+    @Rule(Symptom(name='Peripheral vasodilation', isExist = 'yes')) 
+    def printAnotherVasovagalSyncope(self):
+        self.declare(Disease(name ='Vasovagal Syncope'))
+        
+    @Rule(Symptom(name='Peripheral vasodilation', isExist = 'no')) 
+    def printNotVasovagalSyncope(self):    
+        self.declare(Disease(name ='Vagal Syncope'))
+
+
+
+
+
+
 
     @Rule(Symptom(name='Gait disturance', isExist = 'no')) 
     def askForInvoluntaryMovement(self):
