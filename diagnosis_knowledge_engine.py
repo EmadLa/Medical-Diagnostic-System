@@ -16,22 +16,17 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
         print(name)
 
     @Rule(NOT(Symptom()))
-    # def symptom_1(self):
-    #     self.declare(Symptom(name ='headache', isExist = input('Do you have a headache? (yes/no)\n')))
-
-    # @Rule(Symptom(name='headache', isExist = 'yes'))
-    # def symptom_2(self):
-    #     self.declare(Symptom(name ='symptom_2', isExist = input('Do you have a symptom_2? (yes/no)\n')))
-
-    # @Rule(Symptom(name='headache', isExist = 'no'))
-    # def symptom_3(self):
-    #     self.declare(Symptom(name ='symptom_3', isExist = input('Do you have a symptom_3? (yes/no)\n')))
-
-
-    @Rule(NOT(Symptom()))
-    def symptom_1(self):
+    def askForHeadache(self):
         self.declare(Symptom(name ='headache', isExist = input('Do you have a headache? (yes/no)\n')))
+
+    @Rule(Symptom(name='headache', isExist = 'yes')) 
+    def askForGaitDisturance(self):
+        self.declare(Symptom(name ='Gait disturance', isExist = input('Do you have a Gait disturance? (yes/no)\n')))
         
+    @Rule(Symptom(name='headache', isExist = 'no')) 
+    def printHeadache(self):
+        self.declare(Disease(name ='Gait disturance'))
+
     @Rule(Symptom(name='Gait disturance', isExist = 'no')) 
     def askForInvoluntaryMovement(self):
         self.declare(Symptom(name ='Involuntary movement', isExist = input('Do you have a involuntary movement? (yes/no)\n')))
@@ -77,7 +72,7 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
         self.declare(Disease(name ='Parkinson disease'))
 
     @Rule(Symptom(name='Spontaneous', isExist = 'no'))
-    def printNull(self):
+    def printSpontaneous(self):
         self.declare(Disease(name ='Spontaneous'))
 
     @Rule(Symptom(name='Canon movements', isExist = 'yes')) 
@@ -93,7 +88,7 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
         self.declare(Symptom(name ='Acute', isExist = input('Do you have a Acute? (yes/no)\n')))
 
     @Rule(Symptom(name='Dancing moving', isExist = 'no')) 
-    def printNull(self):
+    def printNotDancingMoving(self):
         self.declare(Disease(name ='NULL'))
 
     @Rule(Symptom(name='Acute', isExist = 'yes')) 
@@ -109,7 +104,7 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
         self.declare(Disease(name ='Huntigton'))
 
     @Rule(Symptom(name='Chronic', isExist = 'no')) 
-    def printNULL(self):
+    def printChronic(self):
         self.declare(Disease(name ='NULL'))
 
     @Rule(Symptom(name='involuntary movement', isExist = 'no'))
@@ -121,7 +116,7 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
          self.declare(Symptom(name ='Seeing Difficulty', isExist = input('Do you have a Seeing Difficulty ? (yes/no)\n')))
 
     @Rule(Symptom(name='Injury in nerves', isExist = 'no'))
-    def printNULL(self):
+    def printInjuryNerve(self):
          self.declare(Disease(name ='NULL'))
 
     @Rule(Symptom(name='Seeing Difficulty', isExist = 'yes'))
@@ -185,6 +180,6 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
         self.declare(Disease(name ='Injury in accesory nerve'))
 
     @Rule(Symptom(name='Weakness of the Sternocleidomastoid', isExist = 'no'))
-    def printNULL(self):
+    def printSternocleidomastoid(self):
         self.declare(Disease(name ='NULL'))
 
