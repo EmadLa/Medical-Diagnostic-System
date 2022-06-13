@@ -127,11 +127,83 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
     def printNotVasovagalSyncope(self):    
         self.declare(Disease(name ='Vagal Syncope'))
 
-#  ///////////////////
-#    Add class C 
-#  ///////////////////
+    @Rule(Symptom(name='Vertigo', isExist = 'yes')) 
+    def askForReal(self):
+        self.declare(Symptom(name ='Real', isExist = input('Do you have a Real (yes/no)\n')))
+        
+    @Rule(Symptom(name='Real', isExist = 'yes')) 
+    def printInnerEarInfection(self):
+        self.declare(Disease(name ='Inner ear infection'))
+        
+    @Rule(Symptom(name='Real', isExist = 'no')) 
+    def askForLie(self):    
+        self.declare(Symptom(name ='Lie', isExist = input('Do you have a Lie (yes/no)\n')))    
 
-    @Rule(Symptom(name='Gait disturance', isExist = 'no')) 
+    @Rule(Symptom(name='Real', isExist = 'yes')) 
+    def printPsychologicalProblem (self):
+        self.declare(Disease(name ='Psychological Problem'))
+
+    @Rule(Symptom(name='Real', isExist = 'no')) 
+    def printNotPsychologicalProblem (self):
+        self.declare(Disease(name ='NULL'))
+
+    @Rule(Symptom(name='Vertigo', isExist = 'no')) 
+    def askForGaitDisturbance(self):    
+        self.declare(Symptom(name ='Gait disturbance', isExist = input('Do you have a Gait disturbance (yes/no)\n')))
+
+    @Rule(Symptom(name='Gait disturbance', isExist = 'yes'))
+    def askForSpastic(self):
+         self.declare(Symptom(name ='Spastic', isExist = input('Do you have a Spastic? (yes/no)\n')))
+
+    @Rule(Symptom(name='Spastic', isExist = 'yes')) 
+    def printPyramidalInjury(self):
+        self.declare(Disease(name ='Pyramidal injury'))
+
+    @Rule(Symptom(name='Spastic', isExist = 'no'))
+    def askForStagger(self):
+         self.declare(Symptom(name ='Stagger', isExist = input('Do you have a Stagger? (yes/no)\n')))
+
+    @Rule(Symptom(name='Stagger', isExist = 'yes')) 
+    def printCerebellumInjury(self):
+        self.declare(Disease(name ='Cerebellum injury'))
+
+    @Rule(Symptom(name='Stagger', isExist = 'no'))
+    def askForGaitHemiphegiar(self):
+         self.declare(Symptom(name ='Gait hemiphegia', isExist = input('Do you have a Gait hemiphegia? (yes/no)\n')))
+
+    @Rule(Symptom(name='Gait hemiphegia', isExist = 'yes')) 
+    def printHemiphegia(self):
+        self.declare(Disease(name ='Hemiphegia'))
+
+    @Rule(Symptom(name='Gait hemiphegia', isExist = 'no'))
+    def askForMilitary(self):
+         self.declare(Symptom(name ='Military', isExist = input('Do you have a Military? (yes/no)\n')))
+
+    @Rule(Symptom(name='Military', isExist = 'yes')) 
+    def printPosteriorCordInjury(self):
+        self.declare(Disease(name ='Posterior cord injury'))
+
+    @Rule(Symptom(name='Military', isExist = 'no'))
+    def askForTrendlenburg(self):
+         self.declare(Symptom(name ='trendlenburg', isExist = input('Do you have a trendlenburg? (yes/no)\n')))
+
+    @Rule(Symptom(name='trendlenburg', isExist = 'yes')) 
+    def printCongenitalHipDislocation(self):
+        self.declare(Disease(name ='Congenital hip dislocation'))
+
+    @Rule(Symptom(name='trendlenburg', isExist = 'no'))
+    def askForGaitParkinson(self):
+         self.declare(Symptom(name ='Gait parkinson', isExist = input('Do you have a Gait parkinson? (yes/no)\n')))
+
+    @Rule(Symptom(name='Gait parkinson', isExist = 'yes')) 
+    def printParkinsonDisease(self):
+        self.declare(Disease(name ='Parkinson Disease'))
+
+    @Rule(Symptom(name='Gait parkinson', isExist = 'no'))
+    def askForNotParkinson(self):
+        self.declare(Disease(name ='NULL'))
+
+    @Rule(Symptom(name='Gait disturbance', isExist = 'no')) 
     def askForInvoluntaryMovement(self):
         self.declare(Symptom(name ='Involuntary movement', isExist = input('Do you have a involuntary movement? (yes/no)\n')))
 
@@ -211,7 +283,7 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
     def printChronic(self):
         self.declare(Disease(name ='NULL'))
 
-    @Rule(Symptom(name='involuntary movement', isExist = 'no'))
+    @Rule(Symptom(name='Involuntary movement', isExist = 'no'))
     def askForInjuryInNerves(self):
          self.declare(Symptom(name ='Injury in nerves', isExist = input('Do you have a Injury in nerves? (yes/no)\n')))
 
