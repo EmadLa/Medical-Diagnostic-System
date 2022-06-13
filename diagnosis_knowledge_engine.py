@@ -22,10 +22,70 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
     @Rule(Symptom(name='headache', isExist = 'yes')) 
     def askForPulsingHeadache(self):
         self.declare(Symptom(name ='Pulsing Headache', isExist = input('Do you have a Pulsing Headache (yes/no)\n')))
-        
+
     @Rule(Symptom(name='headache', isExist = 'no')) 
-    def askForSyncope(self):    
-        self.declare(Symptom(name ='Syncope', isExist = input('Do you have a Syncope(yes/no)\n')))
+    def askForSyncope(self):
+        self.declare(Symptom(name ='Syncope', isExist = input('Do you have a Syncope (yes/no)\n')))
+
+    @Rule(Symptom(name='Pulsing Headache', isExist = 'yes')) 
+    def askForPainInTheUpperPartOfTheHead(self):
+        self.declare(Symptom(name ='Pain in the upper part of the head', isExist = input('Do you have a Pain in the upper part of the head (yes/no)\n')))
+        
+    @Rule(Symptom(name='Pulsing Headache', isExist = 'no')) 
+    def askForTightHeadache(self):    
+        self.declare(Symptom(name ='Tight headache', isExist = input('Do you have a Tight headache (yes/no)\n')))
+
+    @Rule(Symptom(name='Pain in the upper part of the head', isExist = 'yes')) 
+    def printClusterHeadache(self):
+        self.declare(Disease(name ='Cluster Headache'))
+        
+    @Rule(Symptom(name='Pain in the upper part of the head', isExist = 'no')) 
+    def askForPainInPartOfTheHead(self):    
+        self.declare(Symptom(name ='Pain in the right/left part of the head', isExist = input('Do you have a Pain in the right/left part of the head (yes/no)\n')))
+    
+    @Rule(Symptom(name='Pain in the right/left part of the head', isExist = 'yes')) 
+    def printMigraine(self):
+        self.declare(Disease(name ='Migraine'))
+        
+    @Rule(Symptom(name='Pain in the right/left part of the head', isExist = 'no')) 
+    def printNotInLeftOfHead(self):    
+        self.declare(Disease(name ='NULL'))
+
+    @Rule(Symptom(name='Pulsing Headache', isExist = 'no')) 
+    def askForTightHeadache(self):
+        self.declare(Symptom(name ='Tight headache', isExist = input('Do you have a Tight headache (yes/no)\n')))
+
+    @Rule(Symptom(name='Tight headache', isExist = 'yes')) 
+    def askForSpasmHeadache(self):    
+        self.declare(Symptom(name ='Spasm Headache', isExist = input('Do you have a Spasm Headache (yes/no)\n')))
+
+    @Rule(Symptom(name='Tight headache', isExist = 'no')) 
+    def askForMadeYouWakingUpFromSleeping(self):
+        self.declare(Symptom(name ='Made you waking up from sleeping', isExist = input('Do you have a Made you waking up from sleeping (yes/no)\n')))
+
+    @Rule(Symptom(name='Spasm Headache', isExist = 'no')) 
+    def printPsychologicalDistress(self):    
+        self.declare(Disease(name ='Psychological Distress'))
+
+    @Rule(Symptom(name='Spasm Headache', isExist = 'yes')) 
+    def printNotPsychologicalDistress(self):
+        self.declare(Disease(name ='NULL'))
+
+    @Rule(Symptom(name='Made you waking up from sleeping', isExist = 'no')) 
+    def printNotFromSleeping(self):    
+        self.declare(Disease(name ='NULL'))
+
+    @Rule(Symptom(name='Made you waking up from sleeping', isExist = 'yes')) 
+    def askForFountainVomit(self):
+        self.declare(Symptom(name ='Fountain Vomit', isExist = input('Do you have a Fountain Vomit (yes/no)\n')))
+
+    @Rule(Symptom(name='Fountain Vomit', isExist = 'yes')) 
+    def printbrainTumor(self):    
+        self.declare(Disease(name ='brain Tumor'))
+
+    @Rule(Symptom(name='Fountain Vomit', isExist = 'no')) 
+    def printNotbrainTumor(self):    
+        self.declare(Disease(name ='NULL'))
 
     @Rule(Symptom(name='Syncope', isExist = 'yes')) 
     def askForHypotension(self):
@@ -67,11 +127,9 @@ class DiseasesKnowledgeEngine(KnowledgeEngine):
     def printNotVasovagalSyncope(self):    
         self.declare(Disease(name ='Vagal Syncope'))
 
-
-
-
-
-
+#  ///////////////////
+#    Add class C 
+#  ///////////////////
 
     @Rule(Symptom(name='Gait disturance', isExist = 'no')) 
     def askForInvoluntaryMovement(self):
